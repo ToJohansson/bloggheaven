@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService{
 
     @Autowired
     private UserRepository userRepository;
@@ -37,4 +37,5 @@ public class UserService {
         }
         return null;
     }
+
 }

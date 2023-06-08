@@ -1,10 +1,9 @@
 package tobiasjohansson.bloggheaven.model;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "ADRESSES")
+@Table(name = "addresses")
 public class Address {
 
     @Id

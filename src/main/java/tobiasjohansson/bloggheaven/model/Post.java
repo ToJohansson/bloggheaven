@@ -3,7 +3,7 @@ package tobiasjohansson.bloggheaven.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "POSTS")
+@Table(name = "posts")
 public class Post {
 
     @Id
@@ -15,16 +15,11 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String body;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "fk_user")
-    private User user;
-
     public Post(){}
 
-    public Post(String title, String body, User user) {
+    public Post(String title, String body) {
         this.title = title;
         this.body = body;
-        this.user = user;
     }
 
     public Long getPostId() {
@@ -47,11 +42,4 @@ public class Post {
         this.body = body;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
