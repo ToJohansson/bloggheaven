@@ -1,41 +1,28 @@
 package tobiasjohansson.bloggheaven.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "Adresses")
-public class Adress {
+@Table(name = "ADRESSES")
+public class Address {
 
-    /**
-     *Address ska innehålla id, street, postalCode, city, country
-     *
-     * En användare kan endast ha en adress, men en adress kan kopplas till flera användare
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long adressId;
     private String street;
-    private String postaCode;
+    private String postalCode;
     private String City;
     private String country;
-//    private User user;
 
-    public Adress(){}
+    public Address(){}
 
-    public Adress(String street, String postaCode, String city, String country) {
+    public Address(String street, String postaCode, String city, String country) {
         this.street = street;
-        this.postaCode = postaCode;
+        this.postalCode = postaCode;
         City = city;
         this.country = country;
     }
-
-    public long getId() {
-        return adressId;
-    }
-
-//    public void setId(long id) {
-//        this.adressId = adressId;
-//    }
 
     public String getStreet() {
         return street;
@@ -46,11 +33,11 @@ public class Adress {
     }
 
     public String getPostaCode() {
-        return postaCode;
+        return postalCode;
     }
 
     public void setPostaCode(String postaCode) {
-        this.postaCode = postaCode;
+        this.postalCode = postaCode;
     }
 
     public String getCity() {

@@ -1,9 +1,10 @@
 package tobiasjohansson.bloggheaven.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "USERS")
 public class User {
 
     /**
@@ -20,8 +21,12 @@ public class User {
     private String email;
     private String phone;
     private String memberType;
+    @OneToMany(mappedBy = "user")
+    private List<Post> post;
 
-    // private Adress adress;
+    @ManyToOne()
+    @JoinColumn(name = "fk_adress")
+    private Address address;
 
     public User() {
     }
@@ -34,13 +39,25 @@ public class User {
         this.memberType = memberType;
     }
 
+    public Address getAdress() {
+        return address;
+    }
+
+    public void setAdress(Address address) {
+        this.address = address;
+    }
+
+    public List<Post> getPost() {
+        return post;
+    }
+
+    public void setPost(List<Post> post) {
+        this.post = post;
+    }
+
     public long getUserId() {
         return userId;
     }
-
-//    public void setUserId(long userId) {
-//        this.userId = userId;
-//    }
 
     public String getFirstName() {
         return firstName;
