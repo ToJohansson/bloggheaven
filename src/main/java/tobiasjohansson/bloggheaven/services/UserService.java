@@ -2,11 +2,11 @@ package tobiasjohansson.bloggheaven.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tobiasjohansson.bloggheaven.exceptions.ResourceNotFoundException;
 import tobiasjohansson.bloggheaven.model.User;
 import tobiasjohansson.bloggheaven.repository.UserRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService{
@@ -19,23 +19,15 @@ public class UserService{
         return userRepository.findAll();
     }
 
-    public User userById(long id) {
-        Optional<User> opUser = userRepository.findById(id);
-        if (opUser.isPresent()) {
-            return opUser.get();
-        } else
-            return null;
+    public User userById(long id)throws ResourceNotFoundException {
+        User user = userRepository.findById(id).orElseThrow(() ->
+                new ResourceNotFoundException("User", "ID", id));
+        return user;
     }
 
     public User saveUser(User user) {
-
-        long userId = user.getUserId();
-        if (!userRepository.existsById(userId)) {
-            user.setAdress(addressService.addAddress(user.getAdress()));
-            userRepository.save(user);
-            return user;
-        }
-        return null;
+        addressService.addAddress(user.getAddress());
+        return userRepository.save(user);
     }
 
 }

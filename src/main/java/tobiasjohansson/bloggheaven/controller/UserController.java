@@ -1,6 +1,8 @@
 package tobiasjohansson.bloggheaven.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tobiasjohansson.bloggheaven.model.User;
 import tobiasjohansson.bloggheaven.services.UserService;
@@ -19,11 +21,11 @@ public class UserController {
         return userService.getAllUsers();
     }
     @GetMapping("/{id}")
-    public User userById(@PathVariable("id")long id){
-        return userService.userById(id);
+    public ResponseEntity<User> userById(@PathVariable("id")long id){
+        return new ResponseEntity<User>(userService.userById(id),HttpStatus.OK);
     }
     @PostMapping("/newuser")
-    public User saveUser(@RequestBody User user){
-        return userService.saveUser(user);
+    public ResponseEntity<User> saveUser(@RequestBody User user){
+        return new ResponseEntity<User>(userService.saveUser(user), HttpStatus.CREATED);
     }
 }

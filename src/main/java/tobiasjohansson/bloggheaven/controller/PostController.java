@@ -1,6 +1,8 @@
 package tobiasjohansson.bloggheaven.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tobiasjohansson.bloggheaven.model.Post;
 import tobiasjohansson.bloggheaven.services.PostService;
@@ -13,25 +15,31 @@ public class PostController {
 
     @Autowired
     private PostService postService;
+
     @GetMapping("/posts")
     public List<Post> getAllPosts() {
         return postService.getAllPosts();
     }
+
     @GetMapping("posts/{id}")
-    public Post getPostById(@PathVariable("id")long id){
+    public Post getPostById(@PathVariable("id") long id) {
         return postService.getPostById(id);
     }
+
     @PostMapping("/newpost")
-    public Post createPost(@RequestBody Post post){
-        return postService.createPost(post);
+    public ResponseEntity<Post> createPost(@RequestBody Post post) {
+        return new ResponseEntity<Post>(postService.createPost(post), HttpStatus.CREATED);
     }
+
     @PutMapping("/updatepost/{id}")
-    public Post updatePost(@PathVariable("id")long id, @RequestBody Post post){
-        return postService.updatePost(id,post);
+    public ResponseEntity<Post> updatePost(@PathVariable("id") long id, @RequestBody Post post) {
+        return new ResponseEntity<Post>(postService.updatePost(id, post), HttpStatus.OK);
     }
 
     @DeleteMapping("/deletepost/{id}")
-    public void deletePost(@PathVariable("id")long id){
+    public ResponseEntity<String> deletePost(@PathVariable("id") long id) {
         postService.deletePost(id);
+        return new ResponseEntity<String>("Post was deleted",HttpStatus.OK);
+
     }
 }

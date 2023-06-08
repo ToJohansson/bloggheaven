@@ -14,7 +14,7 @@ public class User {
     private String phone;
     private String memberType;
     @ManyToOne()
-    @JoinColumn(name = "fk_adress")
+    @JoinColumn(name = "fk_address")
     private Address address;
 
     public User() {
@@ -29,11 +29,11 @@ public class User {
         this.address = address;
     }
 
-    public Address getAdress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAdress(Address address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

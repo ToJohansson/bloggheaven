@@ -8,7 +8,7 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long adressId;
+    private long addressId;
     private String street;
     private String postalCode;
     private String City;
@@ -23,20 +23,21 @@ public class Address {
         this.country = country;
     }
 
+    public long getAddressId() {
+        return addressId;
+    }
+    public String getPostalCode() {
+        return postalCode;
+    }
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
     public String getStreet() {
         return street;
     }
 
     public void setStreet(String street) {
         this.street = street;
-    }
-
-    public String getPostaCode() {
-        return postalCode;
-    }
-
-    public void setPostaCode(String postaCode) {
-        this.postalCode = postaCode;
     }
 
     public String getCity() {
