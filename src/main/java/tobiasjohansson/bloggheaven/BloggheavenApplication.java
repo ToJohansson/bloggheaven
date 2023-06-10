@@ -1,7 +1,9 @@
 package tobiasjohansson.bloggheaven;
 
+import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class BloggheavenApplication {
@@ -15,4 +17,8 @@ public class BloggheavenApplication {
         SpringApplication.run(BloggheavenApplication.class, args);
     }
 
+    @Bean // För att slippa använda keycloak.json
+    public KeycloakSpringBootConfigResolver keycloakSpringBootConfigResolver(){
+        return new KeycloakSpringBootConfigResolver();
+    }
 }
