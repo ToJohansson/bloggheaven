@@ -16,14 +16,17 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    // ADMIN CAN DO THIS
     @GetMapping("/users")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
+    // ADMIN CAN DO THIS
     @GetMapping("/{id}")
     public ResponseEntity<User> userById(@PathVariable("id")long id){
         return new ResponseEntity<User>(userService.userById(id),HttpStatus.OK);
     }
+    // PERMIT ALL
     @PostMapping("/newuser")
     public ResponseEntity<User> saveUser(@RequestBody User user){
         return new ResponseEntity<User>(userService.saveUser(user), HttpStatus.CREATED);

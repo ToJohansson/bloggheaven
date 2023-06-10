@@ -16,26 +16,27 @@ public class PostController {
     @Autowired
     private PostService postService;
 
+    // PERMIT ALL
     @GetMapping("/posts")
     public List<Post> getAllPosts() {
         return postService.getAllPosts();
     }
-
+    // PERMIT ALL
     @GetMapping("posts/{id}")
     public Post getPostById(@PathVariable("id") long id) {
         return postService.getPostById(id);
     }
-
+    // USER CAN DO THIS
     @PostMapping("/newpost")
     public ResponseEntity<Post> createPost(@RequestBody Post post) {
         return new ResponseEntity<Post>(postService.createPost(post), HttpStatus.CREATED);
     }
-
+    // USER CAN DO THIS
     @PutMapping("/updatepost/{id}")
     public ResponseEntity<Post> updatePost(@PathVariable("id") long id, @RequestBody Post post) {
         return new ResponseEntity<Post>(postService.updatePost(id, post), HttpStatus.OK);
     }
-
+    // USER CAN DO THIS
     @DeleteMapping("/deletepost/{id}")
     public ResponseEntity<String> deletePost(@PathVariable("id") long id) {
         postService.deletePost(id);
